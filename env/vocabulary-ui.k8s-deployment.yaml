@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vocabulary-ui
+  labels:
+    app: vocabulary-ui
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: vocabulary-ui
+      labels:
+        app: vocabulary-ui
+    spec:
+      containers:
+        - name: vocabulary-ui
+          image: deschery/vocabulary-ui:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: vocabulary-service
+
